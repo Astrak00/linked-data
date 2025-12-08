@@ -6,15 +6,28 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"name": "accessService",
-				"outputs": [
+				"anonymous": false,
+				"inputs": [
 					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
 						"internalType": "string",
-						"name": "",
+						"name": "url",
 						"type": "string"
 					}
 				],
+				"name": "ServiceAccess",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "accessService",
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -77,13 +90,7 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "subscriber",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"name": "subscribe",
 				"outputs": [],
 				"stateMutability": "payable",
@@ -142,11 +149,11 @@
 	},
 	"sources": {
 		"contracts/Sucripcion_Cliente_Servicio.sol": {
-			"keccak256": "0x6cfa20defeb07c4d4595d7e05d5fe60f39a9e02082e69ee892ffa34eeba1894b",
+			"keccak256": "0x4fadd2ddf452378768beaa56b760982c8435fbc077d9c7db20848fc5675679c8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://72ff2020a678d9aa030d8447f62574db81ae2e0c9aa1fc61d1bad09279510d06",
-				"dweb:/ipfs/QmNqg9skbQDE7VRu9kb9pw8vquQzeWdQ3JoTqLdkt63ndA"
+				"bzz-raw://cb284d09962026b764fdc28e5cadc9e7b3eab8714ad27b858e42da4555a2bbf4",
+				"dweb:/ipfs/Qmc1snHVtUMacNKyrh3Vvut7U1JdjHRSoK3UzzHCuq3c5Y"
 			]
 		}
 	},

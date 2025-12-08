@@ -13,14 +13,17 @@ contract MonthlySubscription {
     mapping(address => Subscription) public subscribers;
 
     // User pays monthly fee (in ETH)
-    function subscribe(address subscriber) public payable {
+    function subscribe() public payable {
         require(msg.value == monthlyPrice, "Incorrect payment amount");
+        require(!isActive(msg.sender), "User already subscribed");
 
         (bool success, ) = payable(owner).call{ value: msg.value }("");
+        require(success, "Payment transfer failed");
 
-        subscribers[subscriber].nextPaymentTime = block.timestamp + 30 days;
-        subscribers[subscriber].active = true;
+        subscribers[msg.sender].nextPaymentTime = block.timestamp + 30 days;
+        subscribers[msg.sender].active = true;
     }
+
 
     // Check if subscription is still valid
     function isActive(address subscriber) public returns (bool) {
@@ -35,12 +38,15 @@ contract MonthlySubscription {
         return true;
     }
 
-    // Example of a protected service function
-    function accessService() external returns (string memory) {
+    event ServiceAccess(address indexed user, string url);
+
+    function accessService() external {
         require(isActive(msg.sender), "You must be subscribed this month");
-        return "Service granted!";
+
+        string memory url = string.concat(
+            "https://mock-app.example.com/access?token="
+        );
+
+        emit ServiceAccess(msg.sender, url);
     }
-
-
 }
-
